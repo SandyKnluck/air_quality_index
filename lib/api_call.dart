@@ -15,7 +15,6 @@ class _ApiCallState extends State<ApiCall> {
   bool isLoaded = true;
   var jsonData;
 
-  // ฟังก์ชันเพื่อดึงข้อมูลจาก API
   Future<void> fetchAirQuality() async {
     try {
       //await Future.delayed(Duration(seconds: 0));
@@ -46,7 +45,7 @@ class _ApiCallState extends State<ApiCall> {
   @override
   void initState() {
     super.initState();
-    fetchAirQuality(); // เรียกใช้งานฟังก์ชันเมื่อ widget ถูกสร้าง
+    fetchAirQuality();
   }
 
   Color getAirPolutionColor() {
@@ -124,11 +123,7 @@ class _ApiCallState extends State<ApiCall> {
                                 fontWeight: FontWeight.bold,
                                 color: Color.fromARGB(255, 0, 0, 0),
                               ),
-                              textAlign:
-                                  TextAlign.center, // จัดข้อความให้อยู่กลาง
-                              //softWrap: true, // อนุญาตให้ขึ้นบรรทัดใหม่
-                              overflow: TextOverflow
-                                  .visible, // ทำให้แสดงข้อความทั้งหมด
+                              textAlign: TextAlign.center,
                             ),
                           ],
                         )),
@@ -142,10 +137,9 @@ class _ApiCallState extends State<ApiCall> {
                               borderRadius: BorderRadius.circular(40),
                               boxShadow: [
                                 BoxShadow(
-                                  color: getAirPolutionColor()
-                                      .withOpacity(1), // สีเงา
-                                  blurRadius: 10, // ความเบลอของเงา
-                                  spreadRadius: 2, // การกระจายของเงา
+                                  color: getAirPolutionColor().withOpacity(1),
+                                  blurRadius: 10,
+                                  spreadRadius: 2,
                                   offset: const Offset(0, 0),
                                 ),
                               ],
@@ -155,6 +149,7 @@ class _ApiCallState extends State<ApiCall> {
                               children: [
                                 Container(
                                   alignment: Alignment.center,
+                                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                                   height: 50,
 
                                   /*
@@ -164,7 +159,8 @@ class _ApiCallState extends State<ApiCall> {
                                   child: const Text(
                                     "AQI",
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 26,
+                                        fontWeight: FontWeight.bold,
                                         color: Color.fromARGB(255, 0, 0, 0)),
                                   ),
                                 ),
@@ -188,7 +184,7 @@ class _ApiCallState extends State<ApiCall> {
                                               .withOpacity(1), // สีเงา
                                           offset:
                                               const Offset(0, 0), // ตำแหน่งเงา
-                                          blurRadius: 10, // ความฟุ้งของเงา
+                                          blurRadius: 30, // ความฟุ้งของเงา
                                         ),
                                       ],
                                     ),
@@ -243,7 +239,7 @@ class _ApiCallState extends State<ApiCall> {
                                       /*decoration: BoxDecoration(
                                           border: Border.all(
                                               color: Colors.black, width: 1)),*/
-                                      child: Row(
+                                      child: const Row(
                                         children: [
                                           Icon(
                                             Icons.cloud,
@@ -284,7 +280,7 @@ class _ApiCallState extends State<ApiCall> {
                                                     255, 255, 255, 255)
                                                 .withOpacity(1), // สีเงา
                                             //offset: Offset(0, 0), // ตำแหน่งเงา
-                                            blurRadius: 10, // ความฟุ้งของเงา
+                                            blurRadius: 20, // ความฟุ้งของเงา
                                           ),
                                         ],
                                       ),
@@ -297,17 +293,16 @@ class _ApiCallState extends State<ApiCall> {
                         ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                isLoaded = false; // เมื่อกดปุ่มให้แสดง loading
+                                isLoaded = false;
                               });
-                              fetchAirQuality(); // เรียกใช้งานฟังก์ชันโหลดข้อมูลใหม่
+                              fetchAirQuality();
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromARGB(
-                                  255, 187, 226, 199), // กำหนดสีพื้นหลังของปุ่ม
-                              foregroundColor: const Color.fromARGB(
-                                  255, 0, 0, 0), // กำหนดขนาด
+                              backgroundColor:
+                                  const Color.fromARGB(255, 187, 226, 199),
+                              foregroundColor:
+                                  const Color.fromARGB(255, 0, 0, 0),
                               shape: RoundedRectangleBorder(
-                                // กำหนดรูปร่างปุ่ม
                                 borderRadius: BorderRadius.circular(100),
                               ),
                               minimumSize: const Size(100, 60),
